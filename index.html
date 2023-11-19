@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        #Card {
+            background-color: lightgray;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+        }
+        #networkOptions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        select {
+            padding: 5px;
+        }
+        .recharge-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            flex-wrap: wrap;
+            background-color: rgb(247,190,34);
+        }
+        #glodiv {
+            background-color: rgb(38,147,37);
+        }
+        #Airteldiv {
+            background-color: rgb(186, 74, 80);
+        }
+        #mobilediv {
+            background-color: rgb(27, 114, 93);
+        }
+        input[type="text"] {
+            padding: 5px;
+            margin-right: 10px;
+        }
+        button {
+            padding: 8px 15px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        @media screen and (max-width: 768px) {
+            .recharge-section {
+                flex-direction: column;
+            }
+        }
+        #butt{
+            font-weight: 700;
+            background-color: wheat;
+            box-shadow: 2px 2px;
+            border-radius: 5px;
+            
+
+        }
+    </style>
+</head>
+<body>
+
+<div id="container">
+    <div id="Card">
+        <h1>MOBILE RECHARGE CARD GENERATOR</h1>
+        <div>NETWORK PROVIDERS: <select name=""><option value="">MTN</option>
+            <option value="">GLO</option>
+            <option value="">AIRTEL</option>
+            <option value="">9MOBILE</option>
+        </select>
+        SELECT AMOUNT: <select name="" id="amount">
+            <option value="">100</option>
+            <option value="">200</option>
+            <option value="">500</option>
+            <option value="">1000</option>
+        </select>
+        </div><br>
+        <button onclick="Generate()" id="butt">Generate Pin</button>
+        <h1 id="display"></h1>
+    </div>
+    
+    <hr>
+
+    <div class="recharge-section" id="mtndiv">
+        <div>
+            <input type="text" id="input1" placeholder="Dial *555*pin#"><br><br><br>
+            <button onclick="Recharge()">Load Mtn</button>
+        </div>
+        <div>
+            <img src="mtn.png" alt="" width="200px">
+            <h4 id="balance">0</h4>
+            <h2 id="newbal">BAl</h2>
+        </div>
+        
+    </div>
+    <hr>
+    
+    <div class="recharge-section" id="glodiv">
+        <div>
+            <input type="text" id="input2" placeholder="Dial *710*pin#"><br><br><br>
+            <button onclick="Glo()">Load Glo</button>
+            <h4 id="balance2">0</h4>
+            <h2 id="newbal2">BAl</h2>
+        </div>
+        <div>
+            <img src="glo.png" alt="" width="200px">
+        </div>
+    </div>
+    <hr>
+
+    <div class="recharge-section" id="Airteldiv">
+        <div>
+            <input type="text" id="input3" placeholder="Dial *310*pin#"><br><br><br>
+            <button onclick="Airtel()">Load Airtel</button>
+            <h4 id="balance3">0</h4>
+            <h2 id="newbal3">BAl</h2>
+        </div>
+        <div>
+            <img src="airtel.png" alt="" width="200px">
+        </div>
+    </div>
+    <hr>
+
+    <div class="recharge-section" id="mobilediv">
+        <div>
+            <input type="text" id="input4" placeholder="Dial *222*pin#"><br><br><br>
+            <button onclick="mobile()">Load 9MOBILE</button>
+            <h4 id="balance4">0</h4>
+            <h2 id="newbal4">BAl</h2>
+        </div>
+        <div>
+            <img src="9mobile.png" alt="" width="200px">
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
+<script>
+   let newbal = document.getElementById("newbal");
+   let newbal2 = document.getElementById("newbal2");
+   let newbal3 = document.getElementById("newbal3");
+   let newbal4 = document.getElementById("newbal4");
+   let amount = document.getElementById("amount");
+   let display = document.getElementById("display");
+   let balance = document.getElementById("balance");
+   let balance2 = document.getElementById("balance2");
+   let balance3 = document.getElementById("balance3");
+   let balance4 = document.getElementById("balance4");
+   let dis = document.getElementById("dis");
+   let random_number; 
+
+   let defaultAmount = "";
+   
+   function Generate() {
+       random_number = Math.floor(Math.random() * 1000000000000); 
+       console.log(random_number);
+       display.innerHTML = random_number;
+   }
+   
+   function Recharge() {
+       let input1 = document.getElementById("input1").value;
+       let expectedValue = "*555*" + random_number + "#";
+       if (input1 === expectedValue) {
+           alert("Recharge successful");{
+               balance.innerHTML =  "Your Recharge of" +" "+ amount.options[amount.selectedIndex].text +" " + "was successful "
+               newbal.innerHTML = defaultAmount + amount.options[amount.selectedIndex].text
+           }
+       } else {
+           alert("Invalid");
+       }
+
+      
+}
+
+
+function Glo() {
+       let input2 = document.getElementById("input2").value;
+       let expectedValue = "*710*" + random_number + "#";
+       if (input2 === expectedValue) {
+           alert("Recharge successful");{
+            balance2.innerHTML =  "Your Recharge of" +" "+ amount.options[amount.selectedIndex].text +" " + "was successful "
+            newbal2.innerHTML = defaultAmount + amount.options[amount.selectedIndex].text
+           }
+       } else {
+           alert("Invalid");
+       }
+
+      
+}
+
+
+function Airtel() {
+       let input3 = document.getElementById("input3").value;
+       let expectedValue = "*310*" + random_number + "#";
+       if (input3 === expectedValue) {
+           alert("Recharge successful");{
+            balance3.innerHTML =  "Your Recharge of" +" "+ amount.options[amount.selectedIndex].text +" " + "was successful "
+            newbal3.innerHTML = defaultAmount + amount.options[amount.selectedIndex].text
+           }
+       } else {
+           alert("Invalid");
+       }
+
+      
+}
+
+function mobile() {
+       let input4 = document.getElementById("input4").value;
+       let expectedValue = "*222*" + random_number + "#";
+       if (input4 === expectedValue) {
+           alert("Recharge successful");{
+            balance4.innerHTML =  "Your Recharge of" +" "+ amount.options[amount.selectedIndex].text +" " + "was successful "
+            newbal4.innerHTML = defaultAmount + amount.options[amount.selectedIndex].text
+           }
+       } else {
+           alert("Invalid");
+       }
+
+      
+}
+</script>
